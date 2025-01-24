@@ -1,11 +1,16 @@
-#include <fmt/core.h>
+#include "../inc/game.hpp"
 
 int main() {
-    int x = 42;
-    double y = 3.14159;
-
-    // Форматированный вывод
-    fmt::print("The answer is {} and pi is {:.2f}\n", x, y);
-
-    return 0;
+	
+	Game * game = new Game();
+	
+	game->render();
+	while(game->isRunning) {
+		game->update();
+		game->render();
+	}
+	
+	delete game;
+	
+	return 0;
 }

@@ -1,3 +1,3 @@
 cd bin
-88.exe
+Game.exe
 cd ..
