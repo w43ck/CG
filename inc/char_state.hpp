@@ -2,9 +2,9 @@
 
 #include "state.hpp"
 
-struct MenuState : public State {
-	MenuState();
-	virtual ~MenuState();
+struct CharacterState : public State {
+	CharacterState();
+	virtual ~CharacterState();
 	
 	void update(Game * game) override;
 	void render() override;

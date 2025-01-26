@@ -2,13 +2,14 @@
 
 #include "state.hpp"
 
-struct MenuState : public State {
-	MenuState();
-	virtual ~MenuState();
+struct CharViewState : public State {
+	CharViewState();
+	CharViewState(uint8_t type);
+	virtual ~CharViewState();
 	
 	void update(Game * game) override;
 	void render() override;
 	void endState() override;
 	
-	
+	uint8_t type;
 };

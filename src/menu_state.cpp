@@ -1,29 +1,39 @@
 #include "../inc/menu_state.hpp"
+#include "../inc/game_state.hpp"
+#include "../inc/char_state.hpp"
+#include "../inc/char_select_state.hpp"
 
 MenuState::MenuState() {
-	fmt::print("Hello from MenuState!\n");
+	this->output = "Нажмите Escape для выхода\nНажмите 1 для начала игры\nНажмите 2 для создания персонажа\nНажмите 3 для выбора персонажа\n";
 }
 
 MenuState::~MenuState() {
 	
 }
 
-void MenuState::update() {
-	this->checkInput();
-}
-
-void MenuState::render() {
-	// system("cls");
-	fmt::print("Введите 0 для выхода\nВведите 1 для начала игры\n");
-}
-
-void MenuState::checkInput() {
-	std::cin >> this->input;
+void MenuState::update(Game * game) {
+	this->input = _getch();
+	this->output = "Нажмите Escape для выхода\nНажмите 1 для начала игры\nНажмите 2 для создания персонажа\nНажмите 3 для выбора персонажа\n";
 	switch (this->input) {
-		case '0': { this->st = 0;
+		case 27: {
+			this->st = '1';
 			break;
 		}
-		case '1': { this->st = 1;
+		case '1': {
+			if(game->characters.size() > 0) {
+				game->states.push(new GameState());
+				
+			} else {
+				this->output += "\nНе выбран персонаж\n";
+			}
+			break;
+		}
+		case '2': {
+			game->states.push(new CharacterState());
+			break;
+		}
+		case '3': {
+			game->states.push(new CharacterSelectState(game));
 			break;
 		}
 		default:
@@ -31,6 +41,11 @@ void MenuState::checkInput() {
 	}
 }
 
+void MenuState::render() {
+	system("cls");
+	fmt::print("{}", this->output.data());
+}
+
 void MenuState::endState() {
-	fmt::print("Ending MenuState!\n");
+	
 }

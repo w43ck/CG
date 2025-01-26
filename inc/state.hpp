@@ -1,23 +1,20 @@
 #pragma once
 
-#include <Windows.h>
+#include "incs.hpp"
+#include "game.hpp"
 
-#include <fmt/core.h>
-#include <iostream>
-#include <stack>
-#include <vector>
-#include <map>
+struct Game;
 
 struct State {
 	State();
 	virtual ~State() = 0;
 	
-	virtual void update() = 0;
+	virtual void update(Game * game) = 0;
 	virtual void render() = 0;
 	
-	virtual void checkInput();
 	virtual void endState() = 0;
 	
 	char input;
 	int st;
+	std::string output;
 };

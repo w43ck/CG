@@ -6,9 +6,8 @@ struct GameState : public State {
 	GameState();
 	virtual ~GameState();
 	
-	void update() override;
+	void update(Game * game) override;
 	void render() override;
-	void checkInput() override;
 	void endState() override;
 	
 };

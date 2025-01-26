@@ -1,7 +1,11 @@
 #include "../inc/game.hpp"
+#include "../inc/game_state.hpp"
+#include "../inc/menu_state.hpp"
 
 Game::Game() {
 	this->isRunning = 1;
+	this->activeCharacter = nullptr;
+	this->characters.reserve(5);
 	initStates();
 }
 
@@ -22,14 +26,12 @@ void Game::initStates() {
 
 void Game::update() {
 	if(!this->states.empty()) {
-		this->states.top()->update();
+		this->states.top()->update(this);
 		
-		if(this->states.top()->st == 0) {
+		while(!this->states.empty() && this->states.top()->st == '1') {
 			this->states.top()->endState();
 			delete this->states.top();
 			this->states.pop();
-		} else if(this->states.top()->st == 1) {
-			this->states.push(new GameState);
 		}
 	} else {
 		this->isRunning = 0;

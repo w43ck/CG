@@ -2,13 +2,9 @@
 
 State::State() {
 	this->input = ' ';
-	this->st = -1;
+	this->st = '0';
 }
 
 State::~State() {
-	
-}
-
-void State::checkInput() {
 	
 }

@@ -1,7 +1,8 @@
 #pragma once
 
-#include "game_state.hpp"
-#include "menu_state.hpp"
+#include "character.hpp"
+
+struct State;
 
 struct Game {
 	Game();
@@ -12,6 +13,8 @@ struct Game {
 	
 	void initStates();
 	
-	std::stack<State *> states;
 	bool isRunning;
+	std::shared_ptr<BaseCharacter> activeCharacter;
+	std::stack<State *> states;
+	std::vector<std::shared_ptr<BaseCharacter>> characters;
 };
