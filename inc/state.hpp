@@ -15,6 +15,8 @@ struct State {
 	virtual void endState() = 0;
 	
 	char input;
+	bool isOff;
 	int st;
+	State * stt;
 	std::string output;
 };

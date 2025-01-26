@@ -2,7 +2,9 @@
 
 State::State() {
 	this->input = ' ';
-	this->st = '0';
+	this->isOff = 0;
+	this->st = 0;
+	this->stt = nullptr;
 }
 
 State::~State() {

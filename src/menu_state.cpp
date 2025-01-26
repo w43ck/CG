@@ -4,7 +4,7 @@
 #include "../inc/char_select_state.hpp"
 
 MenuState::MenuState() {
-	this->output = "Нажмите Escape для выхода\nНажмите 1 для начала игры\nНажмите 2 для создания персонажа\nНажмите 3 для выбора персонажа\n";
+	this->output = "=====МЕНЮ=====\n\nНажмите Escape для выхода\nНажмите 1 для начала игры\nНажмите 2 для создания персонажа\nНажмите 3 для выбора персонажа\n";
 }
 
 MenuState::~MenuState() {
@@ -13,16 +13,15 @@ MenuState::~MenuState() {
 
 void MenuState::update(Game * game) {
 	this->input = _getch();
-	this->output = "Нажмите Escape для выхода\nНажмите 1 для начала игры\nНажмите 2 для создания персонажа\nНажмите 3 для выбора персонажа\n";
+	this->output = "=====МЕНЮ=====\n\nНажмите Escape для выхода\nНажмите 1 для начала игры\nНажмите 2 для создания персонажа\nНажмите 3 для выбора персонажа\n";
 	switch (this->input) {
 		case 27: {
-			this->st = '1';
+			this->st = 1;
 			break;
 		}
 		case '1': {
-			if(game->characters.size() > 0) {
+			if(game->activeCharacter != nullptr) {
 				game->states.push(new GameState());
-				
 			} else {
 				this->output += "\nНе выбран персонаж\n";
 			}

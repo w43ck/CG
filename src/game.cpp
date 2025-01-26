@@ -6,6 +6,13 @@ Game::Game() {
 	this->isRunning = 1;
 	this->activeCharacter = nullptr;
 	this->characters.reserve(5);
+	this->maps = {
+		"Река",
+		"Низина",
+		"Лес",
+		"Поле",
+		"Хребет",
+	};
 	initStates();
 }
 
@@ -28,7 +35,7 @@ void Game::update() {
 	if(!this->states.empty()) {
 		this->states.top()->update(this);
 		
-		while(!this->states.empty() && this->states.top()->st == '1') {
+		while(!this->states.empty() && this->states.top()->st == 1) {
 			this->states.top()->endState();
 			delete this->states.top();
 			this->states.pop();
